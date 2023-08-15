@@ -28,6 +28,8 @@ const Header = () => {
         }
     }
 
+    
+
     const mobileMenuToggle = () => {
         setMobileMenu(!mobileMenu);
     }

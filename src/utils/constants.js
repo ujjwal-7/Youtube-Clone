@@ -1,6 +1,5 @@
 import React from "react";
-
-import { AiFillHome, AiOutlineFlag } from "react-icons/ai";
+import { AiFillHome, AiFillLike, AiOutlineFlag } from "react-icons/ai";
 import { MdLocalFireDepartment, MdLiveTv } from "react-icons/md";
 import { CgMusicNote } from "react-icons/cg";
 import { FiFilm } from "react-icons/fi";
@@ -9,6 +8,7 @@ import { ImNewspaper } from "react-icons/im";
 import { GiDiamondTrophy, GiEclipse } from "react-icons/gi";
 import { RiLightbulbLine, RiFeedbackLine } from "react-icons/ri";
 import { FiSettings, FiHelpCircle } from "react-icons/fi";
+import { LuHistory } from "react-icons/lu";
 
 export const categoriesArray = [
     { id: 1, name: "New", icon: <AiFillHome />, type: "home", isActive: true },
@@ -28,8 +28,8 @@ export const categoriesArray = [
         divider: true,
         isActive: false
     },
-    { id: 11, name: "Liked Videos", icon: <FiSettings />, type: "user-specific", isActive: false },
-    { id: 12, name: "History", icon: <FiSettings />, type: "user-specific",divider: true, isActive: false},
+    { id: 11, name: "Liked Videos", icon: <AiFillLike />, type: "user-specific", isActive: false },
+    { id: 12, name: "History", icon: <LuHistory />, type: "user-specific",divider: true, isActive: false},
     
     { id: 13, name: "Settings", icon: <FiSettings />, type: "menu", isActive: false },
     { id: 14, name: "Report History", icon: <AiOutlineFlag />, type: "menu", isActive: false },

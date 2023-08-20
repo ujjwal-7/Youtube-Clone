@@ -1,37 +1,40 @@
 import React, { useContext, useState } from 'react';
+import { VideoContext } from '../context/videoContext';
+import { AuthContext } from '../context/authContext';
 import {Link, useLocation, useNavigate} from "react-router-dom";
-
 import ytLogo from "../images/yt-logo.png";
 import ytLogoMobile from "../images/yt-logo-mobile.png";
-
 import {SlMenu} from "react-icons/sl";
 import {IoIosSearch} from "react-icons/io";
-import {RiVideoAddLine} from "react-icons/ri";
-import {FiBell} from "react-icons/fi";
 import {CgClose} from "react-icons/cg";
-
-import { VideoContext } from '../context/videoContext';
-
 import Loader from "../shared/Loader";
 
 const Header = () => {
 
     const [searchQuery, setSearchQuery] = useState("");
-    const {loading, mobileMenu, setMobileMenu} = useContext(VideoContext);
-
+    const {loading, mobileMenu, setMobileMenu, changeCategory} = useContext(VideoContext);
+    const {user, logOut} = useContext(AuthContext);
+   
     const navigate = useNavigate();
 
     const searchQueryHandler = (e) => {
-
-        if((e?.key === "Enter" || e === "searchButton") && searchQuery?.length > 0) {
-            navigate(`/searchResult/${searchQuery}`);
-        }
+      if((e?.key === "Enter" || e === "searchButton") && searchQuery?.length > 0) {
+        navigate(`/searchResult/${searchQuery}`);
+      }
     }
 
     
 
     const mobileMenuToggle = () => {
         setMobileMenu(!mobileMenu);
+    }
+
+    const handleLogOut = async () => {
+      try {
+        await logOut();
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     const {pathname} = useLocation();
@@ -49,8 +52,7 @@ const Header = () => {
           </div>
         )}
 
-
-        <Link to="/" className="flex h-5 items-center">
+        <div className="flex h-5 items-center cursor-pointer" onClick={() => {changeCategory(1, "New", "home")}}>
           <img 
             className="h-full hidden dark:md:block" src={ytLogo} 
             alt="Youtube" 
@@ -60,7 +62,7 @@ const Header = () => {
             className="h-full md:hidden" src={ytLogoMobile} 
             alt="Youtube" 
           />
-        </Link>
+        </div>
       </div>
 
       <div className="group flex items-center">
@@ -85,20 +87,25 @@ const Header = () => {
         </button>
       </div>
 
-      <div className="flex items-center">
-          {/*
-          <div className="hidden md:flex">
-            <div className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]">
-              <RiVideoAddLine className="text-white text-xl cursor-pointer"/>
+      <div className="flex items-center">  
+        {user?.email ? 
+          (
+            <div className="rounded-lg bg-red-600  hover:bg-red-700 cursor-pointer px-1 sm:p-2 md:ml-4" onClick={handleLogOut}>
+              <button className="text-white font-semibold text-sm sm:text-base">
+                Log out
+              </button>
             </div>
-            <div className="flex items-center justify-center ml-2 h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]">
-              <FiBell className="text-white text-xl cursor-pointer"/>
-            </div>
-          </div>
-        */}
-        <div className="flex h-8 w-8 overflow-hidden rounded-full md:ml-4">
-          <img src="https://xsgames.co/randomusers/avatar.php?g=male" />
-        </div>
+          ) : 
+          (
+            <Link to='/login'>
+              <div className="rounded-lg bg-red-600  hover:bg-red-700 cursor-pointer px-1 sm:p-2 md:ml-4">
+                <button className="text-white font-semibold text-sm sm:text-base">
+                  Log in
+                </button>
+              </div>
+            </Link>
+          )
+        } 
       </div>
     </div>
   )

@@ -3,7 +3,6 @@ import { VideoContext } from '../context/videoContext';
 import LeftNav from './LeftNav';
 import VideoCard from './VideoCard';
 
-
 const Feed = () => {
   const { loading, searchResults } = useContext(VideoContext);
 

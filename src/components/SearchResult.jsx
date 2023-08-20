@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-
 import { fetchDataFromApi } from '../utils/api';
 import getUniqueData from '../utils/getUniqueData';
 import { VideoContext } from '../context/videoContext';
@@ -12,7 +11,6 @@ const SearchResult = () => {
   const [result, setResult] = useState();
   const {searchQuery} = useParams();
   const {setLoading} = useContext(VideoContext);
-
 
   useEffect(() => {
     document.getElementById("root").classList.remove("custom-h");

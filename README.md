@@ -2,7 +2,7 @@
 
 This project is a comprehensive video-sharing platform designed to replicate the core functionalities of YouTube while offering an intuitive and user-friendly experience.
 
-**Live Project:** [YouTube Clone](https://youtube-clone-ujjwals-projects-256a0475.vercel.app/)
+**Live Project:** [YouTube Clone](https://youtube-clone-07.netlify.app/)
 
 
 ## Table of Contents
